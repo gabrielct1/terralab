@@ -1,0 +1,28 @@
+[2025-12-20T02:51:12.143+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: processo_etl_completo_geopandas.executar_etl_geografico manual__2025-12-20T02:51:10.376767+00:00 [queued]>
+[2025-12-20T02:51:12.148+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: processo_etl_completo_geopandas.executar_etl_geografico manual__2025-12-20T02:51:10.376767+00:00 [queued]>
+[2025-12-20T02:51:12.148+0000] {taskinstance.py:1359} INFO - Starting attempt 1 of 1
+[2025-12-20T02:51:12.158+0000] {taskinstance.py:1380} INFO - Executing <Task(PythonOperator): executar_etl_geografico> on 2025-12-20 02:51:10.376767+00:00
+[2025-12-20T02:51:12.165+0000] {standard_task_runner.py:57} INFO - Started process 201 to run task
+[2025-12-20T02:51:12.168+0000] {standard_task_runner.py:84} INFO - Running: ['airflow', 'tasks', 'run', 'processo_etl_completo_geopandas', 'executar_etl_geografico', 'manual__2025-12-20T02:51:10.376767+00:00', '--job-id', '5', '--raw', '--subdir', 'DAGS_FOLDER/etl_completa.py', '--cfg-path', '/tmp/tmpjr6s6rku']
+[2025-12-20T02:51:12.169+0000] {standard_task_runner.py:85} INFO - Job 5: Subtask executar_etl_geografico
+[2025-12-20T02:51:12.209+0000] {task_command.py:415} INFO - Running <TaskInstance: processo_etl_completo_geopandas.executar_etl_geografico manual__2025-12-20T02:51:10.376767+00:00 [running]> on host 4d7a5793cbf5
+[2025-12-20T02:51:12.272+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='processo_etl_completo_geopandas' AIRFLOW_CTX_TASK_ID='executar_etl_geografico' AIRFLOW_CTX_EXECUTION_DATE='2025-12-20T02:51:10.376767+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-12-20T02:51:10.376767+00:00'
+[2025-12-20T02:51:12.530+0000] {taskinstance.py:1935} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 192, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 209, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/etl_completa.py", line 14, in complete_etl
+    ufs = gpd.read_file(CAMINHO_SHP)
+  File "/home/airflow/.local/lib/python3.8/site-packages/geopandas/io/file.py", line 281, in _read_file
+    return _read_file_fiona(
+  File "/home/airflow/.local/lib/python3.8/site-packages/geopandas/io/file.py", line 299, in _read_file_fiona
+    if _is_zip(str(path_or_bytes)):
+  File "/home/airflow/.local/lib/python3.8/site-packages/geopandas/io/file.py", line 166, in _is_zip
+    parsed = fiona.path.ParsedPath.from_uri(path)
+AttributeError: module 'fiona' has no attribute 'path'
+[2025-12-20T02:51:12.537+0000] {taskinstance.py:1398} INFO - Marking task as FAILED. dag_id=processo_etl_completo_geopandas, task_id=executar_etl_geografico, execution_date=20251220T025110, start_date=20251220T025112, end_date=20251220T025112
+[2025-12-20T02:51:12.547+0000] {standard_task_runner.py:104} ERROR - Failed to execute job 5 for task executar_etl_geografico (module 'fiona' has no attribute 'path'; 201)
+[2025-12-20T02:51:12.580+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 1
+[2025-12-20T02:51:12.595+0000] {taskinstance.py:2776} INFO - 0 downstream tasks scheduled from follow-on schedule check

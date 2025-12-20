@@ -1,0 +1,16 @@
+FROM apache/airflow:2.8.4-python3.10
+
+USER root
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    gdal-bin \
+    libgdal-dev \
+    libproj-dev \
+    proj-data \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+USER airflow
+
+COPY requirements.txt .
+
+RUN pip install --upgrade pip setuptools wheel
+RUN pip install --no-cache-dir -r requirements.txt
