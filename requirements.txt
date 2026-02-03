@@ -2,3 +2,9 @@ geopandas==0.14.4
 shapely==2.0.2
 pyogrio==0.7.2
 pyproj==3.6.1
+dash==2.14.2
+dash-bootstrap-components==1.5.0
+plotly==5.18.0
+pandas==2.1.4
+sqlalchemy==2.0.23
+psycopg2-binary==2.9.9

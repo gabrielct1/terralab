@@ -41,5 +41,19 @@ services:
       - ./plugins:/opt/airflow/plugins
     command: scheduler
 
+  dash_app:
+    build:
+      context: .
+      dockerfile: Dockerfile.dash
+    depends_on:
+      - postgres
+    environment:
+      DB_HOST: postgres
+    ports:
+      - "8050:8050"
+    volumes:
+      - ./dags:/app/dags
+    restart: unless-stopped
+
 volumes:
   postgres_data:
